@@ -5,4 +5,5 @@ These web process automation projects, focusing on data entry and collection, pr
 
 ### Click on the image below to see the video of the project
 
-[![Watch the demo video](https://www.youtube.com/watch?v=z9jsmt1OwK8/0.jpg)](https://www.youtube.com/watch?v=z9jsmt1OwK8)
+[![Watch the demo video](https://img.youtube.com/vi/z9jsmt1OwK8/maxresdefault.jpg)](https://www.youtube.com/watch?v=z9jsmt1OwK8)
+
