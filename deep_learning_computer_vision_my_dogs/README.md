@@ -5,7 +5,7 @@ Maeve" and "Amora". Using this set of photographs, I conducted the training of a
 
 ### Click on the image below to view the code on google colabsee
 
-[![Watch the demo video](https://img.youtube.com/vi/YdW4nbYO3UU/0.jpg)](httpscolab.research.google.comdrive19UPwtJub-uI6_Fq--KV4ZpFDUeXBlvp_#scrollTo=8n0e2BaOMBDE)
+[![Watch the demo video](https://github.com/Patrick-Setubal/Project/blob/main/deep_learning_computer_vision_my_dogs/deep_learning_computer_vision_my_dogs.png)](https://colab.research.google.com/drive/19UPwtJub-uI6_Fq--KV4ZpFDUeXBlvp_)
 
 
 
