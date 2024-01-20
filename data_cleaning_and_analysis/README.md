@@ -5,6 +5,6 @@ In this project, I showcase skills in data manipulation and analysis using the c
 
 ### Click on the image below to view the code on google colabsee
 
-[![Watch the demo video](LinkImagem)](https://colab.research.google.com/drive/1X3xu9JACni27NA5i0nCKwtzbr1SeIG1N)
+[![Watch the demo video](https://github.com/Patrick-Setubal/Project/blob/main/data_cleaning_and_analysis/data_cleaning_and_analysis.png)](https://colab.research.google.com/drive/1X3xu9JACni27NA5i0nCKwtzbr1SeIG1N)
 
 
