@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COCKPIT</title>
+
+    <!-- jquerry -->
+    <script src="../static/lib/jquery/jquery.min.js"></script>
+    <script src="../static/lib/jquery/jquery-ui-min.js"></script>
+    <script src="../static/lib/jquery/jquery-ajax-native.js"></script>
+
+
+    <!-- Icone da Pagina -->
+    <link href="../static/img/logo-braskem-png.png" rel="icon">
+
+    <!-- Bootstrap -->
+    <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/lib/bootstrap/css/bootstrap-multiselect.css">
+    <script src="../static/lib/bootstrap/js/bootstrap-multiselect.js"></script>
+
+    <!-- select Vitual -->
+    <link rel="stylesheet" href="../static/lib/selectvirtual/selectvirtual.css">
+    <script src="../static/lib/selectvirtual/selectvirtual.js"></script>
+    
+    <!-- Minha CSS -->
+    <link href="../static/css/style.css" rel="stylesheet">
+    
+    <!-- Icon -->
+    <link rel="stylesheet" href="../static/lib/fontawesome/css/all.css">
+    
+    <!-- Notify -->
+    <script src="../static/lib/notify/notify.min.js"></script>
+
+    <!-- moment -->
+    <script src="../static/lib/moment/moment.js"></script>
+
+    <!-- Tabulador -->
+    <!-- Css dentro do sass -->
+    <script type="text/javascript" src="../static/lib/tabulador/tabulator.min.js"></script>
+
+    <!-- Exportar table tabulador -->
+    <script src="../static/lib/tabulador/jspdf.umd.min.js"></script>
+    <script src="../static/lib/tabulador/jspdf.plugin.autotable.min.js"></script>
+    <script type="text/javascript" src="../static/lib/tabulador/xlsx.full.min.js"></script>
+
+    <!-- Dropzone -->
+    <link rel="stylesheet" href="../static/lib/dropzone/dropzone.min.css">
+    <script src="../static/lib/dropzone/dropzone.min.js"></script>
+
+    <!-- splide -->
+    <link rel="stylesheet" href="../static/lib/splide/splide.min.css">
+    <script src="../static/lib/splide/splide.min.js"></script>
+
+    <!-- fancybox -->
+    <link rel="stylesheet" href="../static/lib/fancybox/fancybox.css">
+    <script src="../static/lib/fancybox/fancybox.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+    <!-- Cabeçalho -->
+    <header style="position: absolute; top: 0;left: 0; width:100%;top: 0px;">
+
+        <!-- Botão Navegações e Titulo -->
+        <div class="row-12 d-flex align-items-center" style="height: 100%;margin-left: 20px;">
+            
+            <!-- Botão da navegação e titulo da pagina -->
+            <div class="col-3 ycentro">
+                <button type="button" class="btn btn-outline-dark border-detalhe" data-bs-toggle="collapse"
+                    data-bs-target="#aside">
+                    <i class="fa fa-bars color-detalhe"></i>
+                </button>
+    
+                <text class="titulo" style="padding-left: 30px;">BRASKEM</text>
+            </div>
+
+            <!-- Aba Login // vazia  -->
+            <div class="col-9 text-center xd">
+            </div>
+
+
+        </div>
+
+        
+    </header>
+
+    <!-- Site -->
+    <div class="row" style="margin-top: 70px;">
+
+        <!-- Todo Navegações -->
+        <aside class="col-2 p-0 collapse-horizontal collapse" id="aside" style="border-radius: 0px 00px 50px 50px;">
+            <ul class="m-0 pt-3 p-0">
+                <!-- Logo -->
+                <div class="row-12">
+                    <a href="/">
+                        <div class="row-12 xcentro">
+                            <img src="../static/img/logo-braskem-png.png" style="width: 100px;">
+                        </div>
+                        <div class="row-12 pt-2 pb-2">
+                            <text class="titulo color-letra xcentro text-center">Painel de Monitoramento</text>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Gerenciador de Alarmes -->
+                <div class="row-12 ">
+                    <div class="xcentro py-2 navegacao">
+                        <a href="/">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            Gerenciador de Alarme
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Eletrica -->
+                <div>
+                    <!-- botão principal -->
+                    <div class="row-12 ">
+                        <div class="xcentro py-2 navegacao">
+                            <a href="#" type="button" data-bs-toggle="collapse" data-bs-target="#sub-Eletrica">
+                                <i class="fa fa-bolt"></i>
+                                Eletrica
+                            </a>
+                        </div>
+                    </div>
+                    <!-- sub-menu -->
+                    <div class="row-12 sub-menu collapse" id="sub-Eletrica">
+                        
+                        <div class="row-12  navegacao">
+                            <a href="/Rele">
+                                Rele
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/IDMI">
+                                IDMI
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/Baterias">
+                                Baterias
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/Transformadores.html">
+                                Transformadores (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/checklist.html">
+                                Substação (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/baterias.html">
+                                Baterias (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/FP_PP5.html">
+                                Fator de Potência (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/Descargas%20Parciais.html">
+                                Descargas Parciais (LBV)
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Equipamentos -->
+                <div>
+                    <!-- botão principal -->
+                    <div class="row-12 ">
+                        <div class="xcentro py-2 navegacao">
+                            <a href="#" type="button" data-bs-toggle="collapse" data-bs-target="#sub-Equipamentos">
+                                <i class="fa fa-gauge-high"></i>
+                                Equipamentos
+                            </a>
+                        </div>
+                    </div>
+                    <!-- sub-menu -->
+                    <div class="row-12 sub-menu collapse" id="sub-Equipamentos">
+                        
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/Rotativos.html">
+                                Rotativos (LBV)
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="http://10.158.11.55:8002/PNB/1-EA-11N.html">
+                                Estáticos (LBV)
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Navegações -->
+                <div>
+                    <!-- botão principal Navegação -->
+                    <div class="row-12 ">
+                        <div class="xcentro py-2 navegacao">
+                            <a href="#" type="button" data-bs-toggle="collapse" data-bs-target="#sub-Naveg">
+                                <i class="fa fa-link"></i>
+                                Navegação
+                            </a>
+                        </div>
+                    </div>
+                    <!-- sub-menu -->
+                    <div class="row-12 sub-menu collapse" id="sub-Naveg">
+                        <div class="row-12  navegacao">
+                            <a href="https://.../PIVision/#/">
+                                PIVision
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/home.html">
+                                Labview
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="https://app.powerbi.com/groups/me/reports/....">
+                                Indicador
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="https://apps.powerapps.com/...">
+                                Coleta Offline
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/COCKPIT">
+                                COCKPIT
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/CAC">
+                                CAC
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+            </ul>
+            <div style="height: 30px;"></div>
+        </aside>
+
+
+        <!-- Todo Body -->
+        <div class="col">
+            <div class="row-12">
+
+                <!-- titulo e Especialidades -->
+                <div class="row-12">
+                    <div class="row bloco py-0 mb-1">
+
+                        <!-- botões e Titulo -->
+                        <div class="row py-2 border-b-detalhe-t">
+                            <!-- Sequencia de botões -->
+                            <div class="col-2 xcentro">
+
+                                <!-- Relatorio -->
+                                <button onclick="OpenExportPDF()" type="button" title="Baixar Relatorio"
+                                    class="btn btn-outline-dark border-detalhe">
+                                    <i class="fa fa-file-pdf color-detalhe"></i>
+                                </button>
+
+                            </div>
+                            <!-- titulo -->
+                            <div class="col-8">
+                                <text class="titulo xcentro">COCKPIT</text>
+                            </div>
+                            <!-- Espaço Vazio -->
+                            <div class="col-2"></div>
+                        </div>
+
+                        <!-- Especialidades -->
+                        <div class="row Cabecalho mt-2">
+
+                            <!-- Primeira Linha -->
+                            <div class="row mb-2 px-3">
+                                
+                                <div class="col mx-1 ">
+                                    <div class="row">
+                                        <button id="btn_Sistemas" onclick="ColetarDados('Sistemas')" type="button" title="Atualizar"
+                                        class="btn btn-outline-dark border-detalhe text-light">
+                                            Sistemas
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col mx-1">
+                                    <div class="row">
+                                        <button id="btn_Mecânica" onclick="ColetarDados('Mecânica')" type="button" title="Atualizar"
+                                        class="btn btn-outline-dark border-detalhe text-light">
+                                            Mecânica
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col mx-1">
+                                    <div class="row">
+                                        <button id="btn_Instrumentação" onclick="ColetarDados('Instrumentação')" type="button" title="Atualizar"
+                                        class="btn btn-outline-dark border-detalhe text-light">
+                                            Instrumentação
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="col mx-1">
+                                    <div class="row">
+                                        <button id="btn_Elétrica" onclick="ColetarDados('Elétrica')" type="button" title="Atualizar"
+                                        class="btn btn-outline-dark border-detalhe text-light">
+                                            Elétrica
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Abas contendo as Unidades -->
+                <div id="Aba_Unidades" style="display:none"> 
+
+                    <!-- Javascript -->
+                
+                </div>
+                
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+
+<!-- Modal Loading -->
+<div class="modal fade" id="Loading_Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div style="background-color: rgba(0, 0, 0, 0);border: 0px;" class="xcentro ycentro modal-content">
+
+            <div class="centro spinner-grow text-light" style="width: 300px; height: 300px;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="xcentro mt-5">
+                <h1 style="font-family: Impact;" class="text-white">CARREGANDO</h1>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Adicionar Editar Detalhamento -->
+<div class="modal fade" id="Alterar_Detalhamento">
+    <div id='modal-content-Dados' class="modal-dialog modal-xl">
+        <!-- Conteudo do modal -->
+        <div class="modal-content pt-0 m-0 arrastar bloco">
+
+            <!-- Header do modal -->
+            <div class="modal-header pt-1 pb-1 row">
+                
+                <!-- titulo -->
+                <h4 class="col-4 modal-title"></h4>
+
+                <!-- Modo de Alteração -->
+                <h4 class="col-4 modal-title" id="Alterar_Detalhamento_title_Mod">JS WRITE</h4>
+
+                <!-- Lista de Botão -->
+                <div class="col-4 text-end">
+
+                    <div class="btn-group" role="group">
+                        <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="resetdragg()">
+                            <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                        </button>
+
+                        <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="maximizar('#modal-content-Dados','modal-xl','nao')">
+                            <i class="color-detalhe fa-solid fa-maximize"></i>
+                        </button>
+
+                        <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe" data-bs-dismiss="modal">
+                            <i class="color-detalhe fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- body do modal -->
+            <div class="modal-body pt-1">
+                
+                <!-- Conteudo  -->
+                <div class="row p-2">
+                    
+                    <!-- Inputs Data, User, Critici, Status -->
+                    <div class="col-3">
+
+                        <!-- TAG -->
+                        <div> 
+                            <div class="row text-center">
+                                <label for="AlterarInputData">TAG</label> 
+                            </div>
+                            <div class="row mb-3 xcentro">
+                                <input type="text" name="AlterarInputTAG" id="AlterarInputTAG" class="text-center" style="width: 180px">
+                            </div>
+                        </div>
+
+                        <!-- Data -->
+                        <div> 
+                            <div class="row text-center">
+                                <label for="AlterarInputData">Data</label> 
+                            </div>
+                            <div class="row mb-3 xcentro">
+                                <input type="datetime-local" name="AlterarInputData" id="AlterarInputData" class="text-center" style="width: 180px">
+                            </div>
+                        </div>
+
+                        <!-- Usuario -->
+                        <div> 
+                            <div class="row text-center">
+                                <label for="AlterarInputUser">Usuario</label>
+                            </div>
+                            <div class="row mb-3 xcentro">
+                                <select name="AlterarInputUser" id="AlterarInputUser" class="btn btn btn-outline-secondary  color-detalhe" style="width: 180px">
+                                    <option> Marcio </option>
+                                    <option> Kelvis </option>
+                                    <option> Paganine </option>
+                                    <option> Flavio </option>
+                                    <option> João </option>
+                                    <option> Anailton </option>
+                                    <option> Natalia </option>
+                                    <option> David </option>
+                                    <option> Paulo Rumao </option>
+                                    <option> Outros </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Criticidade -->
+                        <div> 
+                            <div class="row text-center">
+                                <label for="AlterarInputCriticidade">Nivel de Criticidade</label>
+                            </div>
+                            <div class="row mb-3 xcentro">
+                                <select name="AlterarInputCriticidade" id="AlterarInputCriticidade" class="btn btn btn-outline-secondary  color-detalhe" style="width: 180px">
+                                    <option> Nivel 1 </option>
+                                    <option> Nivel 2 </option>
+                                    <option> Nivel 3 </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div> 
+                            <div class="row text-center">
+                                <label for="AlterarInputStatus">Status</label>
+                            </div>
+                            <div class="row mb-3 xcentro">
+                                <select 
+                                    title="Descrição dos Status
+
+Em Acompanhamento:          Não é o suficiente para abrir RCP porem vamos acompanhar.	 
+Realizando Estudos:         Realizando estudos de engenharia, Criando Hipóteses, contato com fabricante...
+RCP Aberta:                 Vamos/Acabamos de Abrir uma RCP.
+Aguardando Detalhamento:    Estamos se Preparando para executar, levantando Material, Proposta...
+Aguardando Execução:        Estamos Prontos para executar, Aguardando Liberação, Programação, Pitstop...
+Manutenção Externa:	        Aguardando a conclusão da Manutenção ou o retorno do equipamento.
+Manutenção Interna:         Aguardando a conclusão da Manutenção.
+Testes Pós Execução:        Acompanhamento efetividade da Manutenção 
+                                    " name="AlterarInputStatus" id="AlterarInputStatus" class="btn btn btn-outline-secondary  color-detalhe" style="width: 180px">
+                                    <option> Em Acompanhamento </option>
+                                    <option> Realizando Estudos </option>
+                                    <option> RCP Aberta </option>
+                                    <option> Aguardando Detalhamento </option>
+                                    <option> Aguardando Execução </option>
+                                    <option> Manutenção Externa </option>
+                                    <option> Manutenção Interna </option>
+                                    <option> Testes Pós Execução </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Nota SAP -->
+                        <div> 
+                            <div class="row text-center">
+                                <label for="AlterarInputNotaSAP">Nota SAP</label> 
+                            </div>
+                            <div class="row mb-3 xcentro">
+                                <input name="AlterarInputNotaSAP" id="AlterarInputNotaSAP" class="text-center" style="width: 180px"
+                                type="text" 
+                                maxlength="11">
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Input Detalhamento -->
+                    <div class="col">
+                        <div class="row">
+                            <label for="AlterarInputDetalhamento" class="text-center">Detalhamento</label>
+                        </div>
+                        <div class="m-0 row-12 text-center" style="height: 90%; width: 100%">
+                            <textarea name="AlterarInputDetalhamento" id="AlterarInputDetalhamento" type="text" wrap="hard" cols="75" rows="5" style="height: 90%; width: 90%"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <!-- Footer bodal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar/Cancelar</button>
+                <button id="AlterarButaoConcluido" class="btn btn-secondary" onclick="">Marcar Como Concluido</button>
+                <button id="AlterarButaoAlterar" type="button" class="btn btn-primary">Salvar</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Upload IMG -->
+<div class="modal fade" id="Modal_uploadIMG">
+    <div id='modal-content-Dados' class="modal-dialog modal-xl">
+        <!-- Conteudo do modal -->
+        <div class="modal-content pt-0 m-0 arrastar bloco">
+
+            <!-- Header do modal -->
+            <div class="modal-header pt-1 pb-1 row">
+                
+                <!-- titulo -->
+                <h4 class="col-4"> Importar Imagem </h4>
+
+                <!-- Lista de Botão -->
+                <div class="col-4 text-end">
+
+                    <div class="btn-group" role="group">
+                        <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="resetdragg()">
+                            <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                        </button>
+
+                        <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="maximizar('#modal-content-Dados','modal-xl','nao')">
+                            <i class="color-detalhe fa-solid fa-maximize"></i>
+                        </button>
+
+                        <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe" data-bs-dismiss="modal">
+                            <i class="color-detalhe fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- body do modal -->
+            <div class="modal-body pt-1">
+                
+                <!-- Conteudo  -->
+                <div class="row p-2">
+
+                    <!-- Área para inputar arquivo -->
+                    <div id="dropzoneArea" class="dropzone">
+                        <div class="dz-message" data-dz-message>
+                            <span style="color: rgba(0, 0, 0,0.8);">Arraste e solte arquivos aqui ou clique para fazer upload</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Área para colar a imagem -->
+                    <div class="mt-1">
+                        <input type="text" id="imagemUrl" placeholder="Cole aqui o URL da imagem ou pressione Ctrl+V"
+                        style="width: 100%; text-align: center;">
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <!-- Footer bodal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar/Cancelar</button>
+                <button id="enviarArquivos" type="button" class="btn btn-primary">Enviar Imagem</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal Exportar relatorio -->
+<div class="modal fade" id="Modal_Export_pdf">
+    <div id='modal-content-Dados' class="modal-dialog modal-xl">
+        <!-- Conteudo do modal -->
+        <div class="modal-content pt-0 m-0 arrastar bloco">
+
+            <!-- Header do modal -->
+            <div class="modal-header pt-1 pb-1 row">
+                
+                <!-- titulo -->
+                <h4 class="col-4 modal-title"></h4>
+
+                <!-- Modo de Alteração -->
+                <h4 class="col-4 modal-title xcentro" id="Modal_Export_pdf_title">Exportar Relatorio</h4>
+
+                <!-- Lista de Botão -->
+                <div class="col-4 text-end">
+
+                    <div class="btn-group" role="group">
+                        <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="resetdragg()">
+                            <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                        </button>
+
+                        <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="maximizar('#modal-content-Dados','modal-xl','nao')">
+                            <i class="color-detalhe fa-solid fa-maximize"></i>
+                        </button>
+
+                        <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe" data-bs-dismiss="modal">
+                            <i class="color-detalhe fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- body do modal -->
+            <div class="modal-body pt-1">
+                
+                <!-- Conteudo line 1  -->
+                <div class="row p-2">
+                    
+                    <!-- Unidade -->
+                    <div class="col"> 
+                        <div class="row text-center">
+                            <label for="Export_pdf_unidade">Unidade</label>
+                        </div>
+                        <div class="row mb-3 xcentro">
+                            <select name="Export_pdf_unidade" id="Export_pdf_unidade" class="color-detalhe VirtualSelect" style="width: 180px" multiple>
+                                <option> Q4 </option>
+                                <option> PE9 </option>
+                                <option> PP5 </option>
+                                <option> Sistemas </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Especialidade -->
+                    <div class="col"> 
+                        <div class="row text-center">
+                            <label for="Export_pdf_especialidade">Especialidade</label>
+                        </div>
+                        <div class="row mb-3 xcentro">
+                            <select name="Export_pdf_especialidade" id="Export_pdf_especialidade" class="color-detalhe VirtualSelect" style="width: 180px" multiple>
+                                <option> Mecânica </option>
+                                <option> Instrumentação </option>
+                                <option> Elétrica </option>
+                                <option> Sistemas </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Criticidade -->
+                    <div class="col"> 
+                        <div class="row text-center">
+                            <label for="Export_pdf_criticidade">Criticidade</label>
+                        </div>
+                        <div class="row mb-3 xcentro">
+                            <select name="Export_pdf_criticidade" id="Export_pdf_criticidade" class="color-detalhe VirtualSelect" style="width: 180px" multiple>
+                                <option> Nivel 1 </option>
+                                <option> Nivel 2 </option>
+                                <option> Nivel 3 </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Conteudo line 1  -->
+                <div class="row p-2">
+                   
+                    <!-- Data Abertura Inicio -->
+                    <div class="col"> 
+                        <div class="row text-center">
+                            <label for="Export_pdf_data_abertura_init">Data Abertura Inicio</label> 
+                        </div>
+                        <div class="row mb-3 xcentro">
+                            <input type="datetime-local" name="Export_pdf_data_abertura_init" id="Export_pdf_data_abertura_init" class="text-center" style="width: 180px">
+                        </div>
+                    </div>
+
+
+                    <!-- Data Abertura Final -->
+                    <div class="col"> 
+                        <div class="row text-center">
+                            <label for="Export_pdf_data_abertura_fim">Data Abertura Final</label> 
+                        </div>
+                        <div class="row mb-3 xcentro">
+                            <input type="datetime-local" name="Export_pdf_data_abertura_fim" id="Export_pdf_data_abertura_fim" class="text-center" style="width: 180px">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            <!-- Footer bodal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button id="AlterarButaoAlterar" type="button" class="btn btn-primary" onclick="CreateReport()">Gerar Relatorio</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- script -->
+<div >
+    <!-- Bootstrap -->
+    <script src="../static/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    
+    <!-- Chart JS -->
+    <script src="../static/lib/Chart/chart.min.js"></script>
+    <script src="../static/lib/Chart/hammer.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-plugin-zoom.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-plugin-annotation.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-plugin-datalabels.js"></script>
+
+    <!-- Exportar Excel -->
+    <script src="../static/lib/excel/xlsx.full.min.js"></script>
+    <script src="../static/lib/excel/FileSaver.js"></script>
+
+    <!-- Criação Interna -->
+    <script src="../static/lib/Braskem/cockpit.js"></script> 
+    <script src="../static/lib/Braskem/main.js"></script>
+
+</div>
+
+</html>

@@ -1,0 +1,22 @@
+@import '../variaveis';
+
+
+aside{
+    font-family: $text-fonte-1;
+    background-color: $color-principal;
+    color: $color-Letra;
+    a{color: $color-Letra;text-decoration: none};
+    a:hover{color:$color-destaque;}
+    .sub-menu{
+        text-align: right;
+        a{
+            padding-right: 20px;
+        }
+    }
+}
+
+.navegacao:hover{
+    background-color:$color-fundo;
+    border-radius: 100px 00% 0% 100px;
+    border-right: 2px solid $color-destaque;
+}

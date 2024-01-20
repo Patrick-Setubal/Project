@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel</title>
+
+    <!-- jquerry -->
+    <script src="../static/lib/jquery/jquery.min.js"></script>
+    <script src="../static/lib/jquery/jquery-ui-min.js"></script>
+
+    <!-- Icone da Pagina -->
+    <link href="../static/img/logo-braskem-png.png" rel="icon">
+
+    <!-- Bootstrap -->
+    <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/lib/bootstrap/css/bootstrap-multiselect.css">
+    <script src="../static/lib/bootstrap/js/bootstrap-multiselect.js"></script>
+
+    <!-- select Vitual -->
+    <link rel="stylesheet" href="../static/lib/selectvirtual/selectvirtual.css">
+    <script src="../static/lib/selectvirtual/selectvirtual.js"></script>
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="../static/lib/fontawesome/css/all.css">
+
+    <!-- Notify -->
+    <script src="../static/lib/notify/notify.min.js"></script>
+
+    <!-- Luxon // Para utilizar ordenação por data -->
+    <script src="../static/lib/luxon/luxon.min.js"></script>
+    
+    <!-- Tabulador -->
+    <!-- Css dentro do sass -->
+    <script type="text/javascript" src="../static/lib/tabulador/tabulator.min.js"></script>
+
+    <!-- Exportar table tabulador -->
+    <script src="../static/lib/tabulador/jspdf.umd.min.js"></script>
+    <script src="../static/lib/tabulador/jspdf.plugin.autotable.min.js"></script>
+    <script type="text/javascript" src="../static/lib/tabulador/xlsx.full.min.js"></script>
+
+    <!-- Minha CSS -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header style="position: absolute; top: 0;left: 0; width:100%;top: 0px;">
+
+        <!-- Botão Navegações e Titulo -->
+        <div class="row-12 d-flex align-items-center" style="height: 100%;margin-left: 20px;">
+            
+            <!-- Botão da navegação e titulo da pagina -->
+            <div class="col-3 ycentro">
+                <button type="button" class="btn btn-outline-dark border-detalhe" data-bs-toggle="collapse"
+                    data-bs-target="#aside">
+                    <i class="fa fa-bars color-detalhe"></i>
+                </button>
+    
+                <text class="titulo" style="padding-left: 30px;">BRASKEM</text>
+            </div>
+
+            <!-- Icones -->
+            <div class="col-9 text-center xd">
+                <div style="height: 60px;" class="row">
+                
+                  <!-- Aba Login -->
+                  <!-- Nome do Usuario   -->
+                  <div class="col xcentro ycentro" style="max-width:100px">
+                    <h7 style="font-weight: bold; color: aliceblue;" id="NomeUsuarioText"></h7>
+                  </div>
+                  <!-- Icone -->
+                  <div class="col xcentro ycentro mx-3" onclick="hide_show('.Login-Hide','#imagemUser')" style="max-width:50px">
+                    <i class="fa-solid fa-user fa-3x color-detalhe" id="imagemUser"></i>
+                  </div>
+                  <!-- Login -->
+                  <div title="Efetuar Login" class="col xcentro ycentro Login-Hide mx-2" style="max-width:150px">
+                    <h7 style="font-weight: bold; color: aliceblue;">Login</h7>
+                    <select type="text" id="Login-User" style="width: 150px;height: 40x;" class="btn btn-outline-dark border-detalhe color-letra">
+                      <!-- Preenchimento automatico pelo javascript -->
+                    </select>
+                  </div>
+                  <!-- Senha -->
+                  <div class="col xcentro ycentro Login-Hide mx-2" style="max-width:150px">
+                    <h7 style="font-weight: bold; color: aliceblue;">Senha</h7>
+                    <input type="password" placeholder="Senha" style="width: 150px;height:40px" id="Login-Senha" class="btn btn-outline-dark border-detalhe color-letra">
+                  </div>
+                  <!-- Botão entrar -->
+                  <div class="col xcentro ycentro Login-Hide mx-2" style="max-width:50px">     
+                    <button onclick="login('nao')" class="btn btn-outline-dark border-detalhe color-letra">
+                        <i class="fa-solid fa-right-to-bracket color-detalhe"></i>
+                    </button>
+                  </div>
+
+                  <!-- WatchDogs -->
+                  <!-- Icone -->
+                  <div title="WatchDogs" class="col xcentro ycentro mx-3" id="WatchDogs" onclick="hide_show('.WatchDogs','#WatchDogs')" style="max-width:50px">
+                    <!-- Javascript preenche -->
+                  </div>
+                  <!-- Texto -->
+                  <div class="col xcentro ycentro WatchDogs mx-2" style="display: none;max-width:250px">
+                    <text id="WatchDogstext"></text>
+                  </div>
+
+
+                  <!-- Configuração -->
+                  <!-- Icone -->
+                  <div title="Config" class="col xcentro ycentro mx-3" id="Config" style="display: none; max-width:50px" onclick="Config()">
+                    <i class="fa-solid fa-gear fa-3x color-detalhe"></i>
+                  </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        
+    </header>
+
+    <!-- Site -->
+    <div class="row" style="margin-top: 70px;">
+
+        <!-- Todo Navegações -->
+        <aside class="col-2 p-0 collapse-horizontal collapse" id="aside" style="border-radius: 0px 00px 50px 50px;">
+            <ul class="m-0 pt-3 p-0">
+                <!-- Logo -->
+                <div class="row-12">
+                    <a href="/">
+                        <div class="row-12 xcentro">
+                            <img src="../static/img/logo-braskem-png.png" style="width: 100px;">
+                        </div>
+                        <div class="row-12 pt-2 pb-2">
+                            <text class="titulo color-letra xcentro text-center">Painel de Monitoramento</text>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Gerenciador de Alarmes -->
+                <div class="row-12 ">
+                    <div class="xcentro py-2 navegacao">
+                        <a href="/">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            Gerenciador de Alarme
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Eletrica -->
+                <div>
+                    <!-- botão principal -->
+                    <div class="row-12 ">
+                        <div class="xcentro py-2 navegacao">
+                            <a href="#" type="button" data-bs-toggle="collapse" data-bs-target="#sub-Eletrica">
+                                <i class="fa fa-bolt"></i>
+                                Eletrica
+                            </a>
+                        </div>
+                    </div>
+                    <!-- sub-menu -->
+                    <div class="row-12 sub-menu collapse" id="sub-Eletrica">
+                        
+                        <div class="row-12  navegacao">
+                            <a href="/Rele">
+                                Rele
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/IDMI">
+                                IDMI
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/Baterias">
+                                Baterias
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/Transformadores.html">
+                                Transformadores (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/checklist.html">
+                                Substação (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/baterias.html">
+                                Baterias (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/FP_PP5.html">
+                                Fator de Potência (LBV)
+                            </a>
+                        </div>
+
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/Descargas%20Parciais.html">
+                                Descargas Parciais (LBV)
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Equipamentos -->
+                <div>
+                    <!-- botão principal -->
+                    <div class="row-12 ">
+                        <div class="xcentro py-2 navegacao">
+                            <a href="#" type="button" data-bs-toggle="collapse" data-bs-target="#sub-Equipamentos">
+                                <i class="fa fa-gauge-high"></i>
+                                Equipamentos
+                            </a>
+                        </div>
+                    </div>
+                    <!-- sub-menu -->
+                    <div class="row-12 sub-menu collapse" id="sub-Equipamentos">
+                        
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/Rotativos.html">
+                                Rotativos (LBV)
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/1-EA-11N.html">
+                                Estáticos (LBV)
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Navegações -->
+                <div>
+                    <!-- botão principal Navegação -->
+                    <div class="row-12 ">
+                        <div class="xcentro py-2 navegacao">
+                            <a href="#" type="button" data-bs-toggle="collapse" data-bs-target="#sub-Naveg">
+                                <i class="fa fa-link"></i>
+                                Navegação
+                            </a>
+                        </div>
+                    </div>
+                    <!-- sub-menu -->
+                    <div class="row-12 sub-menu collapse" id="sub-Naveg">
+                        <div class="row-12  navegacao">
+                            <a href="https://.../PIVision/#/">
+                                PIVision
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="http://.../PNB/home.html">
+                                Labview
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="https://app.powerbi.com/groups/me/reports/...">
+                                Indicador
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="https://apps.powerapps.com/play/e/...">
+                                Coleta Offline
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/COCKPIT">
+                                COCKPIT
+                            </a>
+                        </div>
+                        <div class="row-12  navegacao">
+                            <a href="/CAC">
+                                CAC
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+            </ul>
+            <div style="height: 30px;"></div>
+        </aside>
+
+
+        <!-- Todo Body -->
+        <div id="TodoBody" class="col">
+            <div class="row-12">
+
+                <!-- filtro -->
+                <div class="row-12">
+                    <div class="row bloco pt-0 mb-1">
+
+                        <!-- Titulo -->
+                        <div class="row">
+                            <text class="titulo xcentro border-b-detalhe">Gerenciador de Alarmes</text>
+                        </div>
+
+                        <!-- Filtros -->
+                        <div class="row pt-3">
+
+                            <!-- Datas -->
+                            <div class="col-4 xcentro ycentro">
+                                <div class="row">
+                                    <div class="col-2 xcentro ycentro px-2">
+                                        <text>Data</text>
+                                    </div>
+                                    <div class="col-4 xcentro ycentro px-2">
+                                        <input id="filtro-DataInicial" type="date"
+                                            class="btn btn-outline-dark border-detalhe color-letra"
+                                            style="height: 30px;">
+                                    </div>
+
+                                    <div class="col-2 xcentro ycentro px-2">
+                                        <text class="xcentro ycentro">Ate</text>
+                                    </div>
+                                    <div class="col-4 xcentro ycentro px-2">
+                                        <input id="filtro-DataFinal" type="date"
+                                            class="btn btn-outline-dark border-detalhe color-letra"
+                                            style="height: 30px;">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Sequencia de botões -->
+                            <div class="col-4 xcentro ycentro">
+
+                                <!-- Atualiza -->
+                                <button type="button" title="Atualizar Dados" onclick="Atualizar()"
+                                    class="btn btn-outline-dark border-detalhe">
+                                    <i class="fa fa-refresh color-detalhe"></i>
+                                </button>
+
+                                <!-- Limpar Filtro -->
+                                <button onclick="LimparFiltro()" title="Limpar Filtro" type="button"
+                                    class="btn btn-outline-dark border-detalhe">
+                                    <i class="fa-solid fa-filter-circle-xmark color-detalhe"></i>
+                                </button>
+
+                                <!-- Exportar para excel -->
+                                <button title="Exportar para Excel" id="Exportar_Excel" type="button"
+                                    class="btn btn-outline-dark border-detalhe color-detalhe">
+                                    <i class=" fa-solid fa-file-excel"></i>
+                                </button>
+                                
+                                <!-- Abrir aba do grafico dos alarmes -->
+                                <button type="button" class="btn btn-outline-dark border-detalhe color-detalhe"
+                                    data-bs-toggle="collapse" data-bs-target="#indicadores">
+                                    <i class="fa-solid fa-chart-bar"></i>
+                                </button>
+
+                                <!-- Abrir aba do grafico dos alarmes por modo de falha -->
+                                <button type="button" class="btn btn-outline-dark border-detalhe color-detalhe"
+                                    data-bs-toggle="collapse" data-bs-target="#Indicador_Graf_por_ModoDeFalha">
+                                    <i class="fa-solid fa-chart-bar"></i>
+                                </button>
+
+                            </div>
+
+                            <!-- Numero de Logs -->
+                            <div class="col-4 xcentro ycentro">
+                                <div class="row">
+                                    <div class="col-9 ycentro xcentro">
+                                        <text class="xcentro ycentro">Numero de Alarmes</text>
+                                    </div>
+
+                                    <div class="col-3 xcentro ycentro pt-1">
+                                        <select id="filtro-NumeroLogs" style="width: 70px; height: 30px;"
+                                            class="btn btn-outline-dark border-detalhe color-letra ycentro">
+                                            <option>5</option>
+                                            <option>10</option>
+                                            <option>25</option>
+                                            <option>50</option>
+                                            <option>100</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Indicadores -->
+                <div class="row collapse-vertical collapse" id="Indicador_Graf_por_ModoDeFalha" class="mx-3 my-0">
+
+                    <!-- Indicador  -->
+                    <div class="col m-1 my-0 text-center">
+                        <div class="row bloco my-1 p-0" style="height: auto">
+
+                            <div id="Titulo_Graf_por_ModoDeFalha" class="subtitulo row xcentro border-b-detalhe-t mb-2">
+                                <!-- Javascript Escreve o Titulo -->
+                            </div>
+
+                            <div id="div_Graf_por_ModoDeFalha" class="row py-0 xcentro ycentro" style="height: 50px">
+                                <!-- 
+                                    Javascript coloca o grafico -->
+                            </div>
+                            <div class="row" id="legenda_Grafico">
+                                <div id="mododefalha_outros" class="ind_por_modfalha col-1 mx-1 my-2 xcentro ycentro " style="background-color: rgba(76, 76, 76, 0.5);"
+                                onclick=""> 
+                                     <!-- Javascript Escreve -->
+                                </div>
+                                <div id="mododefalha_1" class="ind_por_modfalha col-2 mx-1 my-2 xcentro ycentro " style="background-color: rgba(9, 36, 245, 0.5);"
+                                onclick=""> 
+                                    <!-- Javascript Escreve -->
+                                </div>
+                                <div id="mododefalha_2" class="ind_por_modfalha col-2 mx-1 my-2 xcentro ycentro " style="background-color: rgba(0, 170, 255, 0.5);"
+                                onclick=""> 
+                                    <!-- Javascript Escreve -->
+                                </div>
+                                <div id="mododefalha_3" class="ind_por_modfalha col-2 mx-1 my-2 xcentro ycentro " style="background-color: rgba(0, 255, 140, 0.5);"
+                                onclick=""> 
+                                     <!-- Javascript Escreve -->
+                                </div>
+                                <div id="mododefalha_4" class="ind_por_modfalha col-2 mx-1 my-2 xcentro ycentro " style="background-color: rgba(47, 255, 0, 0.5);"
+                                onclick=""> 
+                                     <!-- Javascript Escreve -->
+                                </div>
+                                <div id="mododefalha_5" class="ind_por_modfalha col-2 mx-1 my-2 xcentro ycentro " style="background-color: rgba(251, 255, 0, 0.5);"
+                                onclick=""> 
+                                     <!-- Javascript Escreve -->
+                                </div>
+                                                                
+                            </div>
+
+
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Indicadores -->
+                <div class="row collapse-vertical collapse" id="indicadores" class="mx-3 my-0">
+
+                    <!-- Indicador  -->
+                    <div class="col m-1 my-0 text-center">
+                        <div class="row bloco my-1 p-0" style="height: auto">
+                            <div id="Titulo_Indicador" class="subtitulo row xcentro border-b-detalhe-t mb-2">
+                                <!-- Javascript Escreve o Titulo -->
+                            </div>
+                            <div id="div_Grafico" class="row py-0 xcentro ycentro" style="height: 50px">
+                                <!-- Javascript coloca o grafico -->
+                            </div>
+                            <div class="row" id="legenda_Grafico">
+                                <div class="ind_por_nivel col mx-1 my-2 xcentro ycentro legenda_Normal" style="background-color: rgba(0 , 128, 0, 0.4);"
+                                onclick="choice_filtro(['Normal'],'Filtro_Nivel_do_Alarme','selected')"> 
+                                    Normal
+                                </div>
+                                <div class="ind_por_nivel col mx-1 my-2 xcentro ycentro legenda_Nivel1" style="background-color: rgba(255, 255 , 0 , 0.4);"
+                                onclick="choice_filtro(['Nivel 1'],'Filtro_Nivel_do_Alarme','selected')"> 
+                                    Nivel 1
+                                </div>
+                                <div class="ind_por_nivel col mx-1 my-2 xcentro ycentro legenda_Nivel2" style="background-color: rgba(255, 127, 0, 0.4);"
+                                onclick="choice_filtro(['Nivel 2'],'Filtro_Nivel_do_Alarme','selected')"> 
+                                    Nivel 2
+                                </div>
+                                <div class="ind_por_nivel col mx-1 my-2 xcentro ycentro legenda_Nivel3" style="background-color: rgba(255, 0 , 0 , 0.4);"
+                                onclick="choice_filtro(['Nivel 3'],'Filtro_Nivel_do_Alarme','selected')"> 
+                                    Nivel 3
+                                </div>
+                                <div class="ind_por_nivel col mx-1 my-2 xcentro ycentro legenda_Silenciado" style="background-color: rgba(0 , 0 , 255 , 0.4);"
+                                onclick="choice_filtro(['Silenciado'],'Filtro_Nivel_do_Alarme','selected')"> 
+                                    Silenciado
+                                </div>
+                                <div id="total_indicador" class="col xd mx-3 ycentro"></div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Tabela Inteira -->
+                <div class="row-12">
+                    <div class="row bloco p-2">
+                        <div>
+                            <table class="table color-letra">
+
+                                <!-- Titulo das Colunas -->
+                                <thead>
+                                    <tr class="text-center border-b-detalhe-t">
+                                        <th> Data e Hora </th>
+                                        <th> Especialidade </th>
+                                        <th> Sistema </th>
+                                        <th> Nível Do Alarme </th>
+                                        <th> Modo de Falha </th>
+                                        <th> TAG </th>
+                                        <th> Ações </th>
+                                    </tr>
+                                </thead>
+
+                                <!-- Filtro das Colunas -->
+                                <thead>
+                                    <tr class="text-center border-b-detalhe-t">
+                                        <th style="width: 15%;"></th>
+                                        <th style="width: 15%;">
+                                            <div id="Filtro_Especialidade" class="VirtualSelect"></div>
+                                        </th>
+                                        <th style="width: 20%;">
+                                            <div id="Filtro_Sistema" class="VirtualSelect"></div>
+                                        </th>
+                                        <th style="width: 15%;">
+                                            <div id="Filtro_Nivel_do_Alarme" class="VirtualSelect"></div>
+                                        </th>
+
+                                        <th style="width: 10%;"><input type="text" id="Filtro_Modo_de_falha"
+                                                class="text-center"></th>
+                                        <th style="width: 10%;"><input type="text" id="Filtro_TAG" class="text-center">
+                                        </th>
+                                        <th style="width: 15%;">
+                                            <button title="Detalhes de todos os Alarmes Selecionados" id="RecoMult"
+                                                type="button" class="btn btn-default border-detalhe">
+                                                <i class="fa-regular fa-window-restore color-detalhe"></i>
+                                            </button>
+
+                                            <button title="Selecionar todos os Alarmes Visíveis" id="SelectAll"
+                                                value="Sim" type="button" class="btn btn-default border-detalhe">
+                                                <i class="fa-solid fa-list-check color-detalhe"></i>
+                                            </button>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+
+                                <!-- Conteudo tabela -->
+                                <tbody id="table_tbody" class="text-center align-middle">
+                                    <!-- Conteudo Adicionado pelo Javascript -->
+                                </tbody>
+
+                            </table>
+
+                            <!-- Paginação -->
+                            <div class="col-4 xcentro xd w-100">
+                                <div class="border-detalhe">
+                                    <button onclick="DiminuirPaginacao()" type="button" class="btn btn-outline-dark"
+                                        style="border: 0;">
+                                        <i class="fa-solid fa-caret-left color-detalhe"></i>
+                                    </button>
+                                    <text id="PaginacaoTabela_Input">1</text>
+                                    <text>/</text>
+                                    <text id="PaginacaoTabela_NTotal">10</text>
+                                    <button onclick="AcrescentarPaginacao ()" id="PaginacaoTabela_Input2" type="button"
+                                        class="btn btn-outline-dark" style="border: 0;">
+                                        <i class="fa-solid fa-caret-right color-detalhe"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    <!-- Modal Dados do Alarme -->
+    <div class="modal fade" id="Alterar-DadosLogModal">
+        <div id='modal-content-Dados' class="modal-dialog modal-xl">
+            <!-- Conteudo do modal -->
+            <div class="modal-content pt-0 m-0 arrastar bloco">
+
+                <!-- Header do modal -->
+                <div class="modal-header pt-1 pb-1 row">
+                    
+                    <!-- titulo -->
+                    <h4 class="col-4 modal-title" id="Alterar-DadosLogModalLabel">Dados do Alarme</h4>
+
+                    <!-- Paginação -->
+                    <div class="col-4 xcentro">
+                                    
+                        <div class="border-detalhe">
+
+                            <button onclick="DiminuirCarroseu()" type="button" class="btn btn-outline-dark" style="border: 0;">
+                                <i class="fa-solid fa-caret-left color-detalhe"></i>
+                            </button>
+
+                            <text id="Carroseu_N">1</text>   <text>/</text>   <text id="Carroseu_NTotal">0</text>
+
+                            <button onclick="AcrescentarCarroseu()" type="button" class="btn btn-outline-dark" style="border: 0;">
+                                <i class="fa-solid fa-caret-right color-detalhe"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Lista de Botão -->
+                    <div class="col-4 text-end">
+
+                        <div class="btn-group" role="group">
+                            <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="resetdragg()">
+                                <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                            </button>
+
+                            <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="maximizar('#modal-content-Dados','modal-xl','nao')">
+                                <i class="color-detalhe fa-solid fa-maximize"></i>
+                            </button>
+
+                            <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe" data-bs-dismiss="modal">
+                                <i class="color-detalhe fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- body do modal -->
+                <div class="modal-body pt-1">
+
+                    <!-- Carroseu com os dados dos alarmes individuais -->
+                    <div id="carouselExampleControls" class="carousel">
+                        <div id="carroseis" class="carousel-inner">
+
+                            <!-- Preenchimento usando Java Script -->
+
+                        </div>
+                    </div>
+
+
+                    
+                    <!-- Aba Reconhecer Alarmes  -->
+                    <div class="border-detalhe-t p-2">
+                        <!-- Titulo  -->
+                        <div class="row my-2 border-b-detalhe-t">
+                            <h5 class="col-6 ycentro">Reconhecimento de Alarmes</h5>
+                            <div class="col-6 text-end">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-dark border-detalhe" data-bs-toggle="collapse" data-bs-target="#Aba-Reconhecer-Alarm" aria-expanded="true">
+                                        <i class="fa-solid fa-caret-down color-detalhe"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+
+
+                        </div>
+
+                        <!-- Conteudo  -->
+                        <div class="row collapse-horizontal collapse" id="Aba-Reconhecer-Alarm">
+                            
+                            <div class="col-3">
+                                <div class="row text-center">
+                                    <label for="Comentario_Rapido">Comentário Rapido</label>
+                                </div>
+                                <div class="row mb-3 xcentro">
+                                    <select name="Comentario_Rapido" id="Comentario_Rapido" class="btn btn btn-outline-secondary  color-detalhe" style="width: 180px">
+                                        <option> Selecione </option>
+                                        <option> RCP </option>
+                                        <option> Ajuste de Setpoint </option>
+                                        <option> Em Verificacao </option>
+                                        <option> Manobras Operacionais </option>
+                                        <option> Oscilacao de processo </option>
+                                        <option> Partida / Parada </option>
+                                    </select>
+                                </div>
+                                <div class="row text-center">
+                                    <label for="AlterarNivel_Log">Alterar Nivel do Alarme</label>
+                                </div>
+                                <div class="row xcentro">
+                                    <select name="AlterarNivel_Log" id="AlterarNivel_Log" class="btn btn btn-outline-secondary  color-detalhe" style="width: 180px">
+                                        <option> Selecione </option>
+                                        <option> Silenciado </option>
+                                        <option> Normal </option>
+                                        <option> Nivel 1 </option>
+                                        <option> Nivel 2 </option>
+                                        <option> Nivel 3 </option>
+                                    </select>
+                                </div>
+
+                                
+                            </div>
+
+                            <div class="col">
+                                <div class="row">
+                                    <label for="AlterarComent_Log" class="text-center">Comentário</label>
+                                </div>
+                                <div class="m-0 row-12 text-center" style="height: 90%; width: 100%">
+                                    <input name="AlterarComent_Log" id="AlterarComent_Log" type="text" wrap="hard" cols="75" rows="5" style="height: 90%; width: 90%">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <!-- Footer bodal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button class="btn btn-secondary" onclick="SendEmail()">Enviar Email</button>
+                    <button id="AlterarLogModalButton" type="button" class="btn btn-primary">Alterar</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Configuração -->
+    <div class="modal fade" id="Modal_Confi">
+        <div id='modal-content-Confi' class="modal-dialog modal-xl" style="--bs-modal-width:95%">
+            <!-- Conteudo do modal -->
+            <div class="modal-content pt-0 m-0 arrastar bloco">
+
+                <!-- Header do modal -->
+                <div class="modal-header pt-1 pb-1 row">
+                    
+                    <!-- titulo -->
+                    <h4 class="col-4 modal-title" id="Notas_ConfiLabel">Configuração da Pagina</h4>
+
+                    <!-- Lista de Botão -->
+                    <div class="col-4 text-end">
+
+                        <div class="btn-group" role="group">
+                            <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="resetdragg()">
+                                <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                            </button>
+
+                            <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="maximizar('#modal-content-Confi','modal-xl','nao')">
+                                <i class="color-detalhe fa-solid fa-maximize"></i>
+                            </button>
+
+                            <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe" data-bs-dismiss="modal">
+                                <i class="color-detalhe fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- body do modal -->
+                <div class="modal-body pt-1">
+
+                    <div id="ConfigPag" class="col">
+                        <!-- Configuração -->
+                        <div class="row-12">
+                            
+                            <!-- Configuração da tela do SAP -->
+                            <div class="col bloco mb-0">
+                                <!-- Cabeçalho -->
+                                <div class="row border-b-detalhe-t">
+                        
+                                    <div class="col px-3 titulo">Configuração Janela do SAP</div>
+                        
+                                    <!-- icon Exibir detalhes -->
+                                    <div class="col-1 xd ycentro px-3" style="width:50px" id="Exib_Conf_Modal_SAP"
+                                        onclick="hide_show('.Conf_Modal_SAP','#Exib_Conf_Modal_SAP')">
+                                        <i class="fa-solid fa-2x fa-square-caret-down color-detalhe"></i>
+                                    </div>
+                        
+                                </div>
+                        
+                                <!-- Conteudo -->
+                                <div class="row Conf_Modal_SAP mt-2" style="display: none;">
+                        
+                                    <!-- Selecione as colunas pertinentes da tabela do SAP -->
+                                    <div class="row mb-4 border-l-destaque">
+                                        <!-- Title -->
+                                        <div class="row mx-1 mb-2"><b class="px-1">Selecione as colunas pertinentes da tabela do SAP</b></div>
+                                        <!-- Body -->
+                                        <div class="row">
+                        
+                                            <div class="col mx-1 border-b-detalhe-t">
+                                                <div id="Conf_SAP_col"></div>
+                                            </div>
+                        
+                        
+                                        </div>
+                        
+                                    </div>
+                        
+                                </div>
+                        
+                            </div>
+                               
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer bodal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" onclick="Config_Reset()">Restaurar</button>
+                    <button type="button" class="btn btn-secondary" onclick="Config_Save()">Salvar</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal SAP -->
+    <div class="modal fade" id="Notas_SAP">
+        <div id='modal-content-SAP' class="modal-dialog modal-xl" style="--bs-modal-width:95%">
+            <!-- Conteudo do modal -->
+            <div class="modal-content pt-0 m-0 arrastar bloco">
+
+                <!-- Header do modal -->
+                <div class="modal-header pt-1 pb-1 row">
+                    
+                    <!-- titulo -->
+                    <h4 class="col-4 modal-title" id="Notas_SAPLabel">Notas do SAP</h4>
+
+                    <!-- Lista de Botão -->
+                    <div class="col-4 text-end">
+
+                        <div class="btn-group" role="group">
+                            <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="resetdragg()">
+                                <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                            </button>
+
+                            <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe" onclick="maximizar('#modal-content-SAP','modal-xl','nao')">
+                                <i class="color-detalhe fa-solid fa-maximize"></i>
+                            </button>
+
+                            <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe" data-bs-dismiss="modal">
+                                <i class="color-detalhe fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- body do modal -->
+                <div class="modal-body pt-1">
+
+                    <div id="modal_SAP">
+                        <!-- Dados Gerais e configuração -->
+                 
+                        <!-- Primeira Linha -->
+                        <div class="row mb-2">
+
+                            <!-- Terceira Coluna -->
+                            <div class="col-3 mx-1 border-b-detalhe-t">
+                                <div class="row"><b class="px-1 color-detalhe-t">TAG Procurado</b></div>
+                                <!-- Lista de Botão -->
+                                <div class="row">
+
+                                    <div class="btn-group" role="group" style="height:35px">
+                                        <button title="Atualizar Tabela SAP" type="button" class="btn btn-outline-dark border-detalhe color-letra" onclick="Verif_Alarme_SAP($('#input_tag_SAP').val())">
+                                            <i class="fa fa-refresh color-detalhe"></i>
+                                        </button>  
+
+                                        <input type="text" class="col text-center" id="input_tag_SAP">
+
+                                    </div>
+                                </div>
+
+                                
+                                
+                            </div>
+
+                            <!-- Primeira Coluna -->
+                            <div class="col-2 mx-1 border-b-detalhe-t">
+                                <div class="row"><b class="px-1 color-detalhe-t">Ultima Atualização SAP</b></div>
+                                <div class="row px-1" id="UltAttSAP"></div>
+                            </div>
+                            <!-- Segunda Coluna -->
+                            <div class="col-2 mx-1 border-b-detalhe-t">
+                                <div class="row"><b class="px-1 color-detalhe-t">N° De Notas SAP</b></div>
+                                <div class="row px-1" id="NNotasSAP"></div>
+                            </div>
+                            
+
+                            
+
+                        </div>
+
+                        <div id="TableSAP">
+                            <!-- Javascript Escreve aqui -->
+                        </div>
+                   
+
+                        <!-- Cabeçalho -->
+                        <table class="mt-3 table color-letra">
+                            <thead>
+                                <tr class="text-center border-b-detalhe-t" id="modal_sap_colunas">
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="modal_sap_linhas">
+                                
+                                <!-- Javascript Escreve aqui -->
+
+                            </tbody>
+                        </table>
+
+                        <!-- Javascript Escreve aqui -->
+
+                    </div>
+
+                </div>
+
+                <!-- Footer bodal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+   
+    <!-- Modal Loading -->
+    <div class="modal fade" id="Loading_Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div style="background-color: rgba(0, 0, 0, 0);border: 0px;" class="xcentro ycentro modal-content">
+
+                <div class="centro spinner-grow text-light" style="width: 300px; height: 300px;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="xcentro mt-5">
+                    <h1 style="font-family: Impact;" class="text-white">CARREGANDO</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Visualizar Grafico -->
+    <div class="modal fade" id="GraficoModal" tabindex="-1" aria-labelledby="GraficoModalLabel" aria-hidden="true">
+        <div id="modal-content-grafic" class="modal-dialog modal-xl">
+          <div class="modal-content p-0 m-0 arrastar bloco">
+
+            <!-- header -->
+            <div class="modal-header pt-1 pb-1">
+              <h4 class="modal-title" id="GraficoModalLabel">Trend</h4>
+              <div style="float: right;">
+      
+                <div class="btn-group" role="group">
+                  <button title="Detalhes do Alarme" id="LerAlarmButGrafc" type="button" class="btn btn-outline-dark border-detalhe color-letra">
+                    <i class="fa-regular fa-window-maximize color-detalhe"></i>
+                  </button>
+
+                  <button title="Centralizar Janela" type="button" class="btn btn-outline-dark border-detalhe color-letra" onclick="resetdragg()">
+                    <i class="fa-solid fa-arrows-to-circle color-detalhe"></i>
+                  </button>
+
+                  <button title="Maximizar Janela" type="button" class="btn btn-outline-dark border-detalhe color-letra" onclick="maximizar('#modal-content-grafic','modal-xl','sim')">
+                    <i class="color-detalhe fa-solid fa-maximize"></i>
+                  </button>
+                  <button title="Fechar Janela" type="button" class="btn btn-outline-dark border-detalhe color-letra" data-bs-dismiss="modal">
+                    <i class="color-detalhe fa-solid fa-xmark"></i>
+                  </button>
+                </div>    
+      
+              </div>
+              
+            </div>
+
+            <!-- body -->
+            <div class="modal-body pt-1">
+              <div class="container-fluid row m-0 p-0">
+                
+                <div class="row">    
+
+                  <!-- Grafico -->
+                  <div id="LocalGraficoLinha" class="centro col" style="width:80%">
+                    <!-- Grafico -->
+                  </div>    
+                  
+                  <!-- Botões -->
+                  <div class="col-3">
+
+                    <!-- datas -->
+                    <div class="row m-2">
+                        <!-- Grupo das datas -->
+                        <div class="col centro btn-group" role="group">
+                            <!-- Botão de exibição -->
+                            <button id="Conf_Data" title="" class="btn btn-outline-dark border-detalhe color-letra"  onclick="hide_show('#divConf_Data','#Conf_Data')">
+                                <i class="fa fa-clock color-detalhe"></i>
+                            </button>
+                            <!-- Conteudo interno -->
+                            <div class="text-center" id="divConf_Data" style="display: none;">
+                                <!-- Imput Data Inicial -->
+                                <div class="centro">Data Inicial</div>
+                                <div class="centro"><input class="text-center" id="intervalinicial" type="datetime-local"></div>
+                                <!-- Imput Data Final -->
+                                <div class="centro mt-2">Data Final</div>
+                                <div class="centro"><input class="text-center" id="intervalfinal" type="datetime-local"></div>
+
+
+
+                                <!-- Conjunto de botões -->
+                                <div class="row m-2">
+                                    <div class="col centro btn-group mt-2" role="group" style="height:35px">
+
+                                        <div class="centro ycentro">
+                                            <input class="text-center m-2" id="intervalinput" style="width:50px">
+                                        </div>
+
+                                        <button title="" class="btn btn-outline-dark border-detalhe color-letra" onclick="intervalo_grafico('inicial')">
+                                            <i class="fa fa-circle-left color-detalhe"></i>
+                                        </button>
+                        
+                                        <button title="" class="btn btn-outline-dark border-detalhe color-letra" onclick="intervalo_grafico('OsDois')">
+                                            <i class="fa fa-left-right color-detalhe"></i>
+                                        </button>
+                    
+                                        <button id="ExibirDetalhes" title="" class="btn btn-outline-dark border-detalhe color-letra" onclick="intervalo_grafico('final')">
+                                            <i class="fa fa-circle-right color-detalhe"></i>
+                                        </button>
+
+                                    </div>
+                    
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+      
+                    <!-- Check Multipla escala -->
+                    <div class="row mt-2 form-check form-switch">
+                      <div class="col m-2">
+                        <input style="width: 50px; height: 20px" class="form-check-input my-1 mx-3" type="checkbox" role="switch" id="Multipla_Escala">
+                      </div>
+      
+                      <div class="col text-center">
+                        <label class="form-check-label my-1" for="Multipla_Escala">Multipla Escala</label>
+                      </div>
+                    </div>
+                    
+                    <!-- Conjunto de Botões -->
+                    <div class="row m-2">
+                      <div class="col centro btn-group" role="group">
+                        <button title="Atualizar Grafico" class="btn btn-outline-dark border-detalhe color-letra" id="SolicitarGrafico" onclick="SolicitarGrafico()">
+                            <i class="fa fa-refresh color-detalhe"></i>
+                        </button>
+        
+                        <button title="Resetar Zoom" class="btn btn-outline-dark border-detalhe color-letra" onclick="resetZoomChart()">
+                            <i class="fa fa-magnifying-glass-minus color-detalhe"></i>
+                        </button>
+      
+                        <button id="ExibirDetalhes" title="Exibir detalhes" class="btn btn-outline-dark border-detalhe color-letra" onclick="hide_show('#tabela_tags','#ExibirDetalhes')">
+                            <i class="fa fa-table-list color-detalhe"></i>
+                        </button>
+      
+                        <button id="" title="Exibir Linha Alarme" class="btn btn-outline-dark border-detalhe color-letra" onclick="LinhaAlarm()">
+                            <i class="fa fa-bell color-detalhe"></i>                          
+                        </button>
+      
+                        
+      
+      
+                      </div>
+      
+                    </div> 
+
+                    <div class="row m-2">
+                      <div class="col centro btn-group" role="group">
+                        <button id="AdicionarTagGrafico" title="Adicionar Tag 
+      
+       - Tag padrão PI
+       - Precisa Ser da Mesma Area das Tags Anteriores
+                        " class="btn btn-outline-dark border-detalhe color-letra"  onclick="hide_show('#divAdicionarTagGrafico','#AdicionarTagGrafico')">
+                            <i class="fa fa-tag color-detalhe"></i>
+                        </button>
+                        <div id="divAdicionarTagGrafico" style="display: none;">
+                          <input id='AdicionarTagGrafico_1' type="text">
+                          <input id='AdicionarTagGrafico_2' type="text">
+                          <input id='AdicionarTagGrafico_3' type="text">
+                        </div>
+                      </div>
+                    </div>
+      
+      
+                  </div> 
+                </div>
+
+                <!-- Tabela -->
+                <div class="row">
+                  <div id="tabela_tags" class="row">
+      
+                    <table class="table mt-2 color-letra">
+                      <thead>
+                        <tr>
+                          <th scope="col">TAG</th>
+                          <th scope="col">Descrição</th>
+                          <th scope="col">Unidade</th>
+                          <th scope="col">Valor Atual</th>
+                          <th scope="col">Valor Máximo</th>
+                          <th scope="col">Valor Mínimo</th>
+                          <th scope="col">Desvio Padrão</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tabela_detalhes_tag">
+                        <!-- Descrição -->
+                      </tbody>
+                    </table>
+      
+                  </div>
+      
+                </div>
+      
+      
+              </div>
+            </div>
+      
+          
+          </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- script -->
+<div >
+    <!-- Bootstrap -->
+    <script src="../static/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    
+    <!-- Chart JS -->
+    <script src="../static/lib/Chart/chart.min.js"></script>
+    <script src="../static/lib/Chart/hammer.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-plugin-zoom.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-plugin-annotation.min.js"></script>
+    <script src="../static/lib/Chart/chartjs-plugin-datalabels.js"></script>
+    <script src="../static/lib/Chart/chartjs-adapter-date-fns.js"></script>
+
+    <!-- Exportar Excel -->
+    <script src="../static/lib/excel/xlsx.full.min.js"></script>
+    <script src="../static/lib/excel/FileSaver.js"></script>
+
+    <!-- Criação Interna -->
+    <script src="../static/lib/Braskem/tabela.js"></script>
+    <script src="../static/lib/Braskem/main.js"></script>
+
+</div>
+
+
+</html>

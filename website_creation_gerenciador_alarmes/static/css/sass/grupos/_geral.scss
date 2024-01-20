@@ -1,0 +1,113 @@
+@import '../variaveis';
+
+body{background-color: $color-fundo;}
+.row{margin: 0px;padding: 0px;}
+.col{margin: 0px;padding: 0px;}
+.ycentro{display: flex;align-content:center;flex-wrap: wrap;}
+.xcentro{display: flex;justify-content: center;flex-wrap: wrap;}
+
+.xd{display: flex;justify-content: flex-end;flex-wrap: wrap;}
+.xe{display: flex;justify-content: flex-start;flex-wrap: wrap;}
+.yc{display: flex;align-content: flex-start;flex-wrap: wrap;}
+.yb{display: flex;align-content: flex-end;flex-wrap: wrap;}
+.d-flex{flex-wrap: wrap;}
+
+.border-detalhe{border: 1px solid $color-detalhes;}
+.border-detalhe-t{border: 1px solid $color-detalhes-t;}
+.border-b-detalhe{border-bottom: 1px solid $color-detalhes;}
+.border-b-detalhe-t{border-bottom: 1px solid $color-detalhes-t;}
+.border-l-detalhe{border-left: 1px solid $color-detalhes;}
+.border-l-detalhe-t{border-left: 1px solid $color-detalhes-t;}
+
+.border-destaque{border: 2px solid $color-destaque;}
+.border-b-destaque{border-bottom: 2px solid $color-destaque;}
+.border-l-destaque{border-left: 2px solid $color-destaque;}
+
+
+.color-detalhe{color: $color-detalhes;}
+.color-detalhe-t{color: $color-detalhes-t;}
+.color-destaque{color: $color-destaque;}
+.color-letra{color: $color-Letra;}
+
+.input{
+    background-color: $color-principal;
+    color:$color-Letra;
+    border: 1px solid $color-detalhes-t
+}
+
+
+//Cores alarmes
+.Alam-color-silenciado{color: $Alam-color-silenciado}
+.Alam-color-Normal{color: $Alam-color-Normal}
+.Alam-color-Nivel1{color: $Alam-color-Nivel1;}
+.Alam-color-Nivel2{color: $Alam-color-Nivel2;}
+.Alam-color-Nivel3{color: $Alam-color-Nivel3;}
+
+
+
+.bloco{
+    margin: 2%;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: $color-principal;
+    color: $color-Letra; 
+    font-family: $text-fonte-1;
+}
+
+text{
+    color: $color-Letra; 
+    font-family: $text-fonte-1;
+    padding: 0px;
+    margin: 0px;
+}
+
+.titulo{
+    font-size: $text-size;
+    font-weight: bold;
+}
+
+.subtitulo{
+    font-size: $text-size/1.3;
+    font-weight: bold;
+}
+
+
+.subtexto{
+    font-size: $text-size/2;
+    opacity: 0.8;
+}
+
+.subtexto2{
+    font-size: $text-size/1.5;
+    opacity: 0.8;
+}
+
+.negrito{font-weight: bold;}
+
+.icon-big {
+    width: 30px;
+    margin: auto;
+}
+
+
+//grafico
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 85%;
+    width: 95%;
+  }
+
+.hoverDestaque {
+    background-color: transparent;
+    &:hover{
+        background-color: rgb(155, 155, 155)
+    }
+}
+
+// Icone do Input type data na cor branca
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8) brightness(100%) sepia(100%) saturate(0%) hue-rotate(0deg);
+}
+
