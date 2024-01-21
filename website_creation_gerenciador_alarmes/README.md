@@ -1,4 +1,4 @@
-# Website Creation Gerenciador de Alarmes
+# Website Creation Alarm Manager
 Python (Flask, Pandas, Fpdf...) 
 HTML,CSS,JS (Tabulador, Jquerry, Chart, Dropzone...)
 
