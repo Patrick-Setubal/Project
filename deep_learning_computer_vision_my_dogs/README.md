@@ -1,4 +1,4 @@
-# Computer vision hand
+# Deep Learning Computer Vision my Dogs
 Python (Tensorflow, Sklearn, Matplotlib, Pandas)
 
 I embarked on a Deep Learning project, capturing 500 images of each of my dogs, "Maeve" and "Amora". Using this set of photographs, I conducted the training of a computer vision model. The primary objective is to train the model to classify images as either "Amora" or "Maeve
