@@ -10,8 +10,9 @@ Mais do que dominar a linguagem PySpark ou SQL, a ênfase está em:
 
 - Compreender a **estrutura e o funcionamento do Databricks**;
 - Aplicar conceitos de **arquitetura de dados moderna** na prática;
-- Criar pipelines com **Delta Lake** e controle de versionamento;
+- Criar pipelines com **Delta Lake**;
 - Utilizar o **notebook do Databricks** para todo o ciclo ETL.
+- Aproveitar oque o Databricks community Edition oferece.
 
 ---
 
