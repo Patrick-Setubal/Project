@@ -57,7 +57,8 @@ Utilizou-se um dataset fictício de transações com fraudes para simular um pip
 
 **[Patrick Setubal]**  
 Entusiasta de dados, praticando soluções no Databricks.  
-[LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/patrick-setubal-2b502b115/))
+[LinkedIn](https://www.linkedin.com/in/patrick-setubal-2b502b115/)
+
 
 ---
 
