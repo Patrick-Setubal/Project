@@ -1,5 +1,7 @@
 # 🚀 Projeto Prático: ETL e Pipeline no Databricks com Delta Lake
 
+![Visão Geral do Projeto](https://github.com/Patrick-Setubal/Project/blob/main/etl_databricks_spark/elt_databricks_spark.png?raw=true)
+
 ## 🎯 Objetivo
 
 Este projeto tem como principal objetivo **praticar e demonstrar o uso prático da plataforma Databricks**, explorando a criação de pipelines de dados com armazenamento em Delta Lake, utilizando a arquitetura em camadas **Bronze, Silver e Gold**.
