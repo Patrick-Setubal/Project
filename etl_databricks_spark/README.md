@@ -6,11 +6,11 @@
 
 Este projeto tem como principal objetivo **praticar e demonstrar o uso prático da plataforma Databricks**, explorando a criação de pipelines de dados com armazenamento em Delta Lake, utilizando a arquitetura em camadas **Bronze, Silver e Gold**.
 
-Mais do que dominar a linguagem PySpark ou SQL, a ênfase está em:
+O objetivo deste projeto está em:
 
 - Compreender a **estrutura e o funcionamento do Databricks**;
 - Aplicar conceitos de **arquitetura de dados moderna** na prática;
-- Criar pipelines com **Delta Lake**;
+- Criar pipelines com **Delta Lake** para uma inserção unica dos dados;
 - Utilizar o **notebook do Databricks** para todo o ciclo ETL.
 - Aproveitar oque o Databricks community Edition oferece.
 
